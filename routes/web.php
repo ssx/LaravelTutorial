@@ -6,7 +6,6 @@ Route::resource('modules', 'ModuleController')
     ->except([
         'create',
         'store',
-        'show',
         'edit',
         'update',
         'destroy'

@@ -8,7 +8,11 @@
 
     <ul>
         @foreach($modules as $module)
-            <li>{{ $module->id }}: {{ $module->name }}</li>
+            <li>
+                <a href="/modules/{{ $module->id }}">
+                    {{ $module->id }}: {{ $module->name }}
+                </a>
+            </li>
         @endforeach
     </ul>
 
