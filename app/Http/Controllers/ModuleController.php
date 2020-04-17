@@ -18,4 +18,13 @@ class ModuleController extends Controller
             ['modules' => Module::all()]
         );
     }
+
+    /**
+     * @param Module $module
+     * @return View
+     */
+    public function show(Module $module)
+    {
+        return view ('modules.show', compact('module'));
+    }
 }

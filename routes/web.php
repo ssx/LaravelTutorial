@@ -18,7 +18,6 @@ Route::resource('modules', 'ModuleController')
         [
             'create',
             'store',
-            'show',
             'edit',
             'update',
             'destroy'
