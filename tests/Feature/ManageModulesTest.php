@@ -2,9 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Module;
-use App\Tutor;
-use App\Tutorial;
+use App\{User, Module, Tutor, Tutorial};
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -19,86 +17,121 @@ class ManageModulesTest extends TestCase {
         $this->seed();
         $this->withoutExceptionHandling();
 
-        $response = $this->get('/modules');
+        $response = $this->actingAs(factory(User::class)->create())
+            ->get('/modules');
         $response->assertSeeText('List of Modules');
     }
 
     /** @test */
-    public function index_returns_list_of_modules_data()
+    public function user_can_see_list_of_their_modules()
     {
-       $modules = factory(Module::class, 3)->create();
+        // Create the user
+        $user = factory(User::class)->create();
 
-       $response = $this->get('/modules');
-       $response->assertSeeInOrder($this->idsAsArray($modules));
+        // Create the modules
+        $modules = factory(Module::class, 3)->create();
+
+        // Associate the modules with the user
+        $user->modules()->attach($modules);
+
+        $response = $this->actingAs($user)->get('/modules');
+        $response->assertSeeInOrder($this->idsAsArray($modules));
+    }
+
+    /** @test */
+    public function user_cannot_see_what_is_not_their_module_in_module_list()
+    {
+        $user = factory(User::class)->create();
+        $module = factory(Module::class)->create();
+
+        $response = $this->actingAs($user)->get('/modules');
+        $response->assertDontSee($module->id);
     }
 
     /** @test */
     public function show_module_name_in_detail_view()
     {
-        $this->withoutExceptionHandling();
+        list($user, $module) = $this->setup_one_user_with_one_module();
 
-        $module = factory(Module::class)
-            ->create([
-                'name' => 'Enterprise Cloud Computing'
-            ]);
+        $response = $this->actingAs($user)
+            ->get("modules/{$module->id}");
 
-        $response = $this->get("modules/{$module->id}");
-        $response->assertSeeText('Enterprise Cloud Computing');
+        $response->assertSeeText($module->name);
     }
 
     /** @test */
     public function show_module_leader_in_detail_view()
     {
-        $module = factory(Module::class)->create();
+        list($user, $module) = $this->setup_one_user_with_one_module();
 
-        $response = $this->get("modules/{$module->id}");
+        $response = $this->actingAs($user)
+            ->get("modules/{$module->id}");
+
         $response->assertSeeText($module->leader->name);
     }
 
     /** @test */
     public function show_tutorials_information_in_detail_view()
     {
-       $module = factory(Module::class)->create();
-       $tutorials = factory(Tutorial::class)->create([
-           'module_id' => $module->id,
-           'time_start' => '2019-09-25 09:00:00',
-           'time_end' => '2019-09-25 12:00:00',
-           'room' => 'S205'
-       ]);
-       $tutorials->each(function ($t) {
-           $t->tutors()->attach(factory(Tutor::class, 2)->create([
-               'name' => 'Carolin Bauer'
-           ]));
-       });
+        // Alternative approach using seeding
+        $this->seed();
 
-       $response = $this->get("modules/{$module->id}");
-       $response->assertSeeInOrder(['Wednesday', '09:00', '12:00', 'S205', 'Carolin Bauer | Carolin Bauer']);
+        $user = User::find(1);
+        $moduleId = $user->modules->last()->id;
+
+        $response = $this->actingAs($user)
+            ->get("modules/{$moduleId}");
+
+        $response->assertSeeInOrder(['Friday', '09:00', '10:00', 'S507', 'Benhur Bakhtiari Bastaki']);
     }
 
     /** @test */
     public function show_unique_tutors_contact_details_in_detail_view()
     {
-        $tutors = factory(Tutor::class, 2)->create();
+        $this->seed();
 
-        $module = factory(Module::class)->create([
-            'lead_tutor_id' => $tutors[0]->id
-        ]);
+        $user = User::find(1);
+        $moduleId = $user->modules->last()->id;
 
-        $tutorial = factory(Tutorial::class)->create([
-            'module_id' => $module->id
-        ]);
-        $tutorial->tutors()->attach($tutors);
+        $response = $this->actingAs($user)
+            ->get("modules/{$moduleId}");
 
-        $response = $this->get("modules/{$module->id}");
         $response->assertSeeTextInOrder([
             'Contact Details',
-            $tutors[0]->name,
-            $tutors[0]->room,
-            $tutors[0]->email,
-            $tutors[1]->name,
-            $tutors[1]->room,
-            $tutors[1]->email
+            'Benhur Bakhtiari Bastaki',
+            'S341',
+            'b.b.bastaki@staffs.ac.uk',
+            'Kelvin Hilton',
+            'S307',
+            'k.c.hilton@staffs.ac.uk'
         ]);
+    }
+
+    /** @test */
+    public function user_forbidden_response_on_detail_for_module_not_their_own()
+    {
+        $this->actingAs(factory(User::class)->create());
+
+        $module = factory(Module::class)->create();
+
+        $response = $this->get("/modules/{$module->id}");
+        $response->assertForbidden();
+    }
+
+    /** @test */
+    public function anonymous_user_cannot_view_module_list()
+    {
+        $response = $this->get('modules/');
+        $response->assertRedirect('/login');
+    }
+
+    /** @test */
+    public function anonymous_user_cannot_view_module_detail()
+    {
+        $module = factory(Module::class)->create();
+
+        $response = $this->get("modules/{$module->id}");
+        $response->assertRedirect('/login');
     }
 
     /**
@@ -111,6 +144,14 @@ class ManageModulesTest extends TestCase {
             function ($val) {
                 return $val->id;
             }
-        )->toArray();
+        )->sort()->toArray();
+    }
+
+    private function setup_one_user_with_one_module(): array
+    {
+        $user = factory(User::class)->create();
+        $module = factory(Module::class)->create();
+        $user->modules()->attach($module);
+        return array ($user, $module);
     }
 }
