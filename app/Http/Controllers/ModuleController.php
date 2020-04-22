@@ -3,10 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Module;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
 class ModuleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')
+            ->only([
+                'index',
+                'show'
+            ]);
+    }
 
     /**
      * @return View
@@ -15,7 +25,7 @@ class ModuleController extends Controller
     {
         return view (
             'modules.index',
-            ['modules' => Module::all()]
+            ['modules' => Auth::user()->modules]
         );
     }
 
@@ -25,6 +35,8 @@ class ModuleController extends Controller
      */
     public function show(Module $module)
     {
+        Gate::authorize('view', $module);
+
         return view ('modules.show', compact('module'));
     }
 }

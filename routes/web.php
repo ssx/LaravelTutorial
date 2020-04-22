@@ -24,3 +24,7 @@ Route::resource('modules', 'ModuleController')
         ]
     );
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
