@@ -2,14 +2,16 @@
 
 namespace Tests\Feature;
 
-use App\{User, Module, Tutor, Tutorial};
+use App\{Role, User, Module, Tutor, Tutorial};
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Tests\TimetableSetupTesting;
 
 class ManageModulesTest extends TestCase {
 
     use RefreshDatabase;
+    use TimetableSetupTesting;
 
     /** @test */
     public function index_returns_list_of_modules_title()
@@ -26,7 +28,7 @@ class ManageModulesTest extends TestCase {
     public function user_can_see_list_of_their_modules()
     {
         // Create the user
-        $user = factory(User::class)->create();
+        $user = $this->createUserAs('student');
 
         // Create the modules
         $modules = factory(Module::class, 3)->create();
@@ -41,7 +43,7 @@ class ManageModulesTest extends TestCase {
     /** @test */
     public function user_cannot_see_what_is_not_their_module_in_module_list()
     {
-        $user = factory(User::class)->create();
+        $user = $this->createUserAs('student');
         $module = factory(Module::class)->create();
 
         $response = $this->actingAs($user)->get('/modules');
@@ -110,7 +112,7 @@ class ManageModulesTest extends TestCase {
     /** @test */
     public function user_forbidden_response_on_detail_for_module_not_their_own()
     {
-        $this->actingAs(factory(User::class)->create());
+        $this->actingAs($this->createUserAs('student'));
 
         $module = factory(Module::class)->create();
 
@@ -134,24 +136,76 @@ class ManageModulesTest extends TestCase {
         $response->assertRedirect('/login');
     }
 
-    /**
-     * @param $values
-     * @return array
-     */
-    private function idsAsArray($values)
+    /** @test */
+    public function admin_can_see_all_modules_in_list()
     {
-        return $values->map(
-            function ($val) {
-                return $val->id;
-            }
-        )->sort()->toArray();
+        $user = $this->createUserAs('admin');
+        $modules = factory(Module::class, 2)->create();
+
+        $response = $this->actingAs($user)->get('modules');
+        $response->assertSeeInOrder([
+            $modules[0]->id,
+            $modules[1]->id
+        ]);
     }
 
-    private function setup_one_user_with_one_module(): array
+    /** @test */
+    public function admin_can_see_create_module_link()
     {
-        $user = factory(User::class)->create();
-        $module = factory(Module::class)->create();
-        $user->modules()->attach($module);
-        return array ($user, $module);
+        $user = $this->createUserAs('admin');
+
+        $response = $this->actingAs($user)->get('modules');
+        $response->assertSee('/modules/create');
+    }
+
+    /** @test */
+    public function ordinary_user_cannot_see_create_module_link()
+    {
+        $user = $this->createUserAs('student');
+
+        $response = $this->actingAs($user)->get('modules');
+        $response->assertDontSee('/modules/create');
+    }
+
+    /** @test */
+    public function admin_sees_create_form_that_creates_modules()
+    {
+        $user = $this->createUserAs('admin');
+
+        $response = $this->actingAs($user)->get('/modules/create');
+        $response->assertSee('post');
+        $response->assertSee('/modules');
+        $response->assertSeeInOrder($this->idsAsArray(Tutor::all()));
+    }
+
+    /** @test */
+    public function ordinary_user_cannot_see_create_form_that_creates_modules()
+    {
+        $user = $this->createUserAs('student');
+
+        $response = $this->actingAs($user)->get('/modules/create');
+        $response->assertForbidden();
+    }
+
+    /** @test */
+    public function admin_can_create_a_module_in_database()
+    {
+        $module = factory(Module::class)->make();
+
+        $this->actingAs($this->createUserAs('admin'))
+            ->post('/modules', $module->toArray());
+
+        $this->assertDatabaseHas('modules', $module->toArray());
+    }
+
+    /** @test */
+    public function ordinary_user_cannot_create_a_module()
+    {
+        $module = factory(Module::class)->make();
+
+        $response = $this->actingAs($this->createUserAs('student'))
+            ->post('/modules', $module->toArray());
+
+        $response->assertForbidden();
     }
 }

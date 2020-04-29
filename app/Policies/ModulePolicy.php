@@ -19,7 +19,7 @@ class ModulePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $this->isAdmin($user);
     }
 
     /**
@@ -31,7 +31,7 @@ class ModulePolicy
      */
     public function view(User $user, Module $module)
     {
-        return $user->modules->contains($module)
+        return $user->modules->contains($module) || $this->isAdmin($user)
             ? Response::allow()
             : Response::deny();
     }
@@ -44,7 +44,9 @@ class ModulePolicy
      */
     public function create(User $user)
     {
-        //
+        return $this->isAdmin($user)
+            ? Response::allow()
+            : Response::deny();
     }
 
     /**
@@ -93,5 +95,14 @@ class ModulePolicy
     public function forceDelete(User $user, Module $module)
     {
         //
+    }
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    private function isAdmin(User $user): bool
+    {
+        return $user->role->role === 'admin';
     }
 }

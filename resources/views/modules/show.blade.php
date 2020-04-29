@@ -39,6 +39,13 @@
             </dd>
         @endforeach
     </dl>
+    @can('create', App\Module::class)
+
+        <div>
+            <a href="{{ route('modules.tutorials.create', $module->id) }}">Add Module</a>
+        </div>
+
+    @endcan
 
     <div>
         <a href="/modules">Back to module listing</a>
