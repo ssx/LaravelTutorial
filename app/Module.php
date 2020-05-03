@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Module extends Model
 {
     public $incrementing = false;
+    protected $fillable = [
+        'id', 'name', 'lead_tutor_id'
+    ];
 
     public function leader()
     {
