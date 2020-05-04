@@ -44,17 +44,14 @@ class ModuleTutorialController extends Controller
             'time_end' => ['required'],
             'room' => ['required'],
             'tutors' => ['required', function ($attribute, $value, $fail) {
-                $tutors = Tutor::select('id')->get()->map(function ($t) {
-                    return $t->id;
-                });
-                $failed = false;
-                foreach ($value as $item) {
-                    if (!$tutors->contains($item)) {
-                        $fail("The selected tutors must exist in the system.");
+                foreach ($value as $tutorId) {
+                    if ( ! Tutor::where('id', $tutorId)->exists()) {
+                        $fail('All tutors must exist on the system.');
+                        break;
                     }
                 }
             }]
-        ]);
+       ]);
 
         $tutorial = new Tutorial();
         $tutorial->module_id = $validatedData['module_id'];

@@ -27,7 +27,7 @@
                                     <input
                                         type="text"
                                         id="module_id"
-                                        class="form-control-plaintext col-sm-2"
+                                        class="form-control-plaintext"
                                         name="module_id"
                                         readonly
                                         value="{{ $module->id }}"

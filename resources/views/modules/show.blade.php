@@ -42,7 +42,7 @@
     @can('create', App\Module::class)
 
         <div>
-            <a href="{{ route('modules.tutorials.create', $module->id) }}">Add Module</a>
+            <a href="{{ route('modules.tutorials.create', $module->id) }}">Add Tutorial</a>
         </div>
 
     @endcan
