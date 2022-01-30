@@ -17,26 +17,26 @@ class UserRolesSeeder extends Seeder
                     'user_id' => 1,
                     'role' => 'student',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'user_id' => 2,
                     'role' => 'student',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'user_id' => 3,
                     'role' => 'student',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'user_id' => 4,
                     'role' => 'admin',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
-                ]
+                    'updated_at' => date('Y-m-d H:i:s'),
+                ],
             ]);
     }
 }

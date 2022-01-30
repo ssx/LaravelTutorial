@@ -19,7 +19,7 @@ class TutorialSeeder extends Seeder
                     'time_end' => '2020-01-20 13:00:00',
                     'room' => 'S507',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'module_id' => 'COMP50017',
@@ -27,7 +27,7 @@ class TutorialSeeder extends Seeder
                     'time_end' => '2020-01-24 17:00:00',
                     'room' => 'S503',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'module_id' => 'COSE50586',
@@ -35,7 +35,7 @@ class TutorialSeeder extends Seeder
                     'time_end' => '2020-01-24 13:00:00',
                     'room' => 'S509',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'module_id' => 'COSE50586',
@@ -43,7 +43,7 @@ class TutorialSeeder extends Seeder
                     'time_end' => '2020-01-23 17:00:00',
                     'room' => 'S503',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'module_id' => 'COSE50637',
@@ -51,7 +51,7 @@ class TutorialSeeder extends Seeder
                     'time_end' => '2020-01-24 10:00:00',
                     'room' => 'S507',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'module_id' => 'COSE50637',
@@ -59,7 +59,7 @@ class TutorialSeeder extends Seeder
                     'time_end' => '2020-01-24 11:00:00',
                     'room' => 'S507',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'module_id' => 'COSE50582',
@@ -67,7 +67,7 @@ class TutorialSeeder extends Seeder
                     'time_end' => '2020-01-21 17:00:00',
                     'room' => 'S507',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'module_id' => 'COIS51091',
@@ -75,7 +75,7 @@ class TutorialSeeder extends Seeder
                     'time_end' => '2020-09-25 12:00:00',
                     'room' => 'S205',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'module_id' => 'COIS51092',
@@ -83,8 +83,8 @@ class TutorialSeeder extends Seeder
                     'time_end' => '2020-09-23 15:00:00',
                     'room' => 'S501',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
-                ]
+                    'updated_at' => date('Y-m-d H:i:s'),
+                ],
             ]);
     }
 }

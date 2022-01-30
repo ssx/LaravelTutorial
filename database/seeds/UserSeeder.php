@@ -19,80 +19,80 @@ class UserSeeder extends Seeder
                     'module_id' => 'COSE50637',
                     'user_id' => 1,
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'module_id' => 'COSE50586',
                     'user_id' => 1,
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'module_id' => 'COMP50017',
                     'user_id' => 1,
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'module_id' => 'COMP50016',
                     'user_id' => 1,
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'module_id' => 'COSE50637',
                     'user_id' => 2,
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'module_id' => 'COSE50586',
                     'user_id' => 2,
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'module_id' => 'COSE50582',
                     'user_id' => 2,
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'module_id' => 'COMP50016',
                     'user_id' => 2,
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'module_id' => 'COSE50637',
                     'user_id' => 3,
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'module_id' => 'COSE50586',
                     'user_id' => 3,
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'module_id' => 'COMP50016',
                     'user_id' => 3,
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'module_id' => 'COIS51092',
                     'user_id' => 3,
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'module_id' => 'COIS51091',
                     'user_id' => 3,
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
-                ]
+                    'updated_at' => date('Y-m-d H:i:s'),
+                ],
             ]);
     }
 }

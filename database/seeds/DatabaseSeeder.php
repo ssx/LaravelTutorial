@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
                 TutorialSeeder::class,
                 TutorTutorialSeeder::class,
                 UserSeeder::class,
-                UserRolesSeeder::class
+                UserRolesSeeder::class,
             ]
         );
     }
