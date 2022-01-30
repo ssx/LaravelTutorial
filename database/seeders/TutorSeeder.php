@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
 class TutorSeeder extends Seeder
@@ -19,7 +21,7 @@ class TutorSeeder extends Seeder
                     'room' => 'S338',
                     'email' => 'p.c.windridge@staffs.ac.uk',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'id' => 'flk1',
@@ -27,7 +29,7 @@ class TutorSeeder extends Seeder
                     'room' => 'S334',
                     'email' => 'f.l.knight@staffs.ac.uk',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'id' => 'gdm1',
@@ -35,7 +37,7 @@ class TutorSeeder extends Seeder
                     'room' => 'S309',
                     'email' => 'g.d.mansfield@staffs.ac.uk',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'id' => 'rao1',
@@ -43,7 +45,7 @@ class TutorSeeder extends Seeder
                     'room' => 'S338',
                     'email' => 'r.a.oldham@staffs.ac.uk',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'id' => 'jel1',
@@ -51,7 +53,7 @@ class TutorSeeder extends Seeder
                     'room' => 'S334',
                     'email' => 'j.e.lawton@staffs.ac.uk',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'id' => 'kch1',
@@ -59,7 +61,7 @@ class TutorSeeder extends Seeder
                     'room' => 'S307',
                     'email' => 'k.c.hilton@staffs.ac.uk',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'id' => 'bb11',
@@ -67,7 +69,7 @@ class TutorSeeder extends Seeder
                     'room' => 'S341',
                     'email' => 'b.b.bastaki@staffs.ac.uk',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'id' => 'aj34',
@@ -75,7 +77,7 @@ class TutorSeeder extends Seeder
                     'room' => 'N/A',
                     'email' => 'adam.jacobs@staffs.ac.uk',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'id' => 'cib1',
@@ -83,7 +85,7 @@ class TutorSeeder extends Seeder
                     'room' => 'S305',
                     'email' => 'c.i.bauer@staffs.ac.uk',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'id' => 'edw1',
@@ -91,7 +93,7 @@ class TutorSeeder extends Seeder
                     'room' => 'S306',
                     'email' => 'e.d.wilson@staffs.ac.uk',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'id' => 'jjc1',
@@ -99,7 +101,7 @@ class TutorSeeder extends Seeder
                     'room' => 'S332',
                     'email' => 'j.j.champion@staffs.ac.uk',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'id' => 'oaa2',
@@ -107,8 +109,8 @@ class TutorSeeder extends Seeder
                     'room' => 'N/A',
                     'email' => 'oluwasegun.adedugbe1@staffs.ac.uk',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
-                ]
+                    'updated_at' => date('Y-m-d H:i:s'),
+                ],
             ]);
     }
 }
