@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Module;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleController extends Controller
 {
@@ -16,7 +17,7 @@ class ModuleController extends Controller
     {
         return view (
             'modules.index',
-            ['modules' => Module::all()]
+            ['modules' => Auth::user()->modules]
         );
     }
 

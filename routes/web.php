@@ -22,7 +22,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('modules', ModuleController::class)
+Route::resource('modules', ModuleController::class, [
+    'middleware' => 'auth'
+])
     ->except(
         [
             'create',
