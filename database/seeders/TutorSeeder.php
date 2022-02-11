@@ -111,6 +111,15 @@ class TutorSeeder extends Seeder
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),
                 ],
+                [
+                    'id' => 'smr4',
+                    'name' => 'Scott Robinson',
+                    'room' => 'N/A',
+                    'email' => 'scott.robinson@staffs.ac.uk',
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s'),
+                ],
+
             ]);
     }
 }
