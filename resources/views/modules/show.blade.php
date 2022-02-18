@@ -36,6 +36,12 @@
 
     </dl>
 
+    @can('create', \App\Models\Module::class)
+        <div>
+            <a href="{{ route('modules.tutorials.create', $module) }}">Add Tutorial</a>
+        </div>
+    @endcan
+
     <div>
         <a href="{{ route('modules.index') }}">Back to modules listing</a>
     </div>

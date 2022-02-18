@@ -113,6 +113,8 @@
 
         </div>
 
+        <br><br><br>
+
         <div class="col-sm-8 text-right">
 
             <input type="submit" name="submit" class="btn btn-primary" value="Add Tutorial">
