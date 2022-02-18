@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    Go to <a href="/modules">view the modules</a>
                 </div>
             </div>
         </div>

@@ -37,7 +37,7 @@
     </dl>
 
     <div>
-        <a href="/modules">Back to modules listing</a>
+        <a href="{{ route('modules.index') }}">Back to modules listing</a>
     </div>
 
 @endsection

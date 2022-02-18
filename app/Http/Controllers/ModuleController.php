@@ -3,11 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Module;
+use App\Models\Tutor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ModuleController extends Controller
 {
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')
+            ->only([
+                'index',
+                'show'
+            ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,10 +29,11 @@ class ModuleController extends Controller
      */
     public function index()
     {
-        return view (
-            'modules.index',
-            ['modules' => Auth::user()->modules]
-        );
+        $modules = Auth::user()->can('viewAny', Module::class)
+            ? Module::all()
+            : Auth::user()->modules;
+
+        return view ('modules.index', compact('modules'));
     }
 
     /**
@@ -28,7 +43,10 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        //
+        Gate::authorize('create', Module::class);
+
+        $tutors = Tutor::all();
+        return view ('modules.create', compact('tutors'));
     }
 
     /**
@@ -39,7 +57,15 @@ class ModuleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'id' => ['required', 'unique:App\Models\Module', 'max:15'],
+            'name' => ['required', 'max:50'],
+            'lead_tutor_id' => ['required', 'exists:App\Models\Tutor,id', 'max:5']
+        ]);
+
+        Module::create($validatedData);
+
+        return redirect()->route('modules.index');
     }
 
     /**
@@ -50,6 +76,8 @@ class ModuleController extends Controller
      */
     public function show(Module $module)
     {
+        Gate::authorize('view', $module);
+
         return view ('modules.show', compact('module'));
     }
 

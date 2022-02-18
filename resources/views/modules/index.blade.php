@@ -16,4 +16,10 @@
         @endforeach
     </ul>
 
+    @can('create', \App\Models\Module::class)
+        <div>
+            <a href="{{ route('modules.create') }}">Add Module</a>
+        </div>
+    @endcan
+
 @endsection

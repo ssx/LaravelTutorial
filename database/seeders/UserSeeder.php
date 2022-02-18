@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory()->count(3)->create();
+        \App\Models\User::factory()->count(4)->create();
 
         \Illuminate\Support\Facades\DB::table('module_user')
             ->insertOrIgnore([

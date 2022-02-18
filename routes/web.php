@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\ModuleTutorialController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,15 +24,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('modules', ModuleController::class, [
-    'middleware' => 'auth'
-])
-    ->except(
-        [
-            'create',
-            'store',
-            'edit',
-            'update',
-            'destroy'
-        ]
-    );
+Route::resource('modules', ModuleController::class)
+    ->except([
+        'edit',
+        'update',
+        'destroy'
+    ]);
+
+Route::resource('modules.tutorials', ModuleTutorialController::class)
+    ->only([
+        'create',
+        'store'
+    ]);
