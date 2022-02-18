@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Services\CalculateService;
 use PHPUnit\Framework\TestCase;
 
 class ExampleTest extends TestCase
@@ -11,8 +12,10 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function testBasicTest()
+    public function test_it_calculates_10_plus_4_correctly()
     {
-        $this->assertTrue(true);
+        $calculateService = new CalculateService();
+
+        $this->assertEquals($calculateService->addFour(10), 14);
     }
 }
